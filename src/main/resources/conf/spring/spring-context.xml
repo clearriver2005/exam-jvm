@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ss="http://www.springframework.org/schema/security"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:rsf="http://www.suning.com/schema/rsf" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+	http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd 
+	http://www.suning.com/schema/rsf http://www.suning.com/schema/rsf/rsf.xsd">
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<bean id="sdfch" class="java.text.SimpleDateFormat">
+        <constructor-arg index="0" value="yyyy-MM-dd HH:mm:ss"/>
+    </bean>
+	<bean id="objectMapper" class="org.codehaus.jackson.map.ObjectMapper">
+	    <property name="dateFormat" ref="sdfch"></property>
+	</bean>
+	<context:annotation-config />
+	<context:component-scan base-package="com.river.service" />
+	<context:component-scan base-package="com.river.dao" />
+	<tx:annotation-driven/>
+	<bean id="dataSource" class="org.h2.jdbcx.JdbcConnectionPool"
+		destroy-method="dispose">
+		<constructor-arg>
+			<bean class="org.h2.jdbcx.JdbcDataSource">
+				<property name="URL" value="jdbc:h2:tcp://localhost/~/test" />
+				<property name="user" value="sa" />
+				<property name="password" value="sa" />
+			</bean>
+		</constructor-arg>
+	</bean>
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
+		abstract="false" lazy-init="false" autowire="default">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+
+ 	
+<!-- 	<bean id="sessionFactory" -->
+<!-- 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"> -->
+<!-- 		<property name="dataSource" ref="dataSource" /> -->
+<!-- 		<property name="annotatedClasses"> -->
+<!-- 			<list> -->
+<!-- 				<value>com.river.entity.Customer</value> -->
+<!-- 				<value>com.river.entity.Trade</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 		<property name="hibernateProperties"> -->
+<!-- 			<props> -->
+<!-- 				<prop key="hibernate.dialect"> -->
+<!-- 					org.hibernate.dialect.MySQLDialect -->
+<!-- 				</prop> -->
+<!-- 				<prop key="hibernate.show_sql">true</prop> -->
+<!-- 			</props> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+</beans>

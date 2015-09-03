@@ -1,0 +1,75 @@
+/*
+拍品的增加修改页面的css
+*/
+#maindiv{
+	width:100%;
+	height:520px;
+	overflow-y:auto;
+}
+#part1,#part3{
+	width:100%;
+	height:180px;
+	background-color:#EAEAEA;
+}
+
+#part2{
+	width:100%;
+	height:140px;
+	background-color:#F7F7F7;
+}
+#part3{
+	width:100%;
+	height:105px;
+	background-color:#EAEAEA;
+}
+#part4{
+	width:100%;
+	height:120px;
+	background-color:#EAEAEA;
+}
+#part5{
+	width:100%;
+	height:170px;
+	background-color:#F7F7F7;
+}
+.linediv{
+	padding-top:10px;
+	padding-left:5px;
+}
+.buttonSpan{
+	text-align:right;
+	width:80px;
+	height:28px;
+	margin-right:50px
+}
+
+
+
+#extendDiv{
+	width:100%;
+	height:600px;
+	background-color:#F7F7F7;
+}
+.extTitle{
+	text-align:right;
+}
+
+
+.textStyle1{
+	width:150px;
+	height:30px;
+}
+
+.formTip_iocn{color:#999; line-height:16px; padding-left:20px; }
+
+.formButtonOther{ float:left; display:inline; width:auto; height:32px;
+				margin:5px 5px 5px 0px ; padding:0px 20px 0px 20px; 
+				background:url("../../img/formButtonOtherBg.gif") 0px 0px repeat-x; 
+				border:1px solid #277cbb; font-size:14px; font-weight:bold; line-height:32px; 
+				color:#fff; text-decoration:none; cursor:pointer;}
+
+.formButtonOther2{display:inline; width:auto; height:32px;
+				margin:5px 5px 5px 0px ; padding:0px 20px 0px 20px; 
+				background:url("../../img/formButtonOtherBg.gif") 0px 0px repeat-x; 
+				border:1px solid #277cbb; font-size:14px; font-weight:bold; line-height:32px; 
+				color:#fff; text-decoration:none; cursor:pointer;}
